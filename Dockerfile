@@ -3,7 +3,7 @@ WORKDIR /app
 COPY package.json ./
 RUN yarn install --ignore-engines
 COPY . ./
-RUN yarn run build
+RUN yarn run build --ignore-engines
 
 FROM nginx:1.21-alpine
 COPY --from=build /app/build /usr/share/nginx/html
