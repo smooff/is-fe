@@ -1,9 +1,9 @@
-fROM node:13.12.0-alpine as build
+fROM node:14.17.1 as build
 WORKDIR /app
 COPY package.json ./
-RUN yarn install --ignore-engines
+RUN npm install --ignore-engines
 COPY . ./
-RUN yarn run build --ignore-engines
+RUN npm run build
 
 FROM nginx:1.21-alpine
 COPY --from=build /app/build /usr/share/nginx/html
